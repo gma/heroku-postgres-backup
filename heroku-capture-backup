@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Takes a backup of your database on Heroku and downloads the .dump
+# file. You'll need to run this script from within a directory
+# containing a git repository that is setup to talk to your Heroku app.
+#
+# See https://devcenter.heroku.com/articles/pgbackups for instructions
+# on how to use Heroku's backup commands.
+
+REMOTE="${HEROKU_REMOTE:-heroku}"
+
+capture_backup()
+{
+    heroku pgbackups:capture --expire -r $REMOTE
+}
+
+extract_backup_id()
+{
+    grep DATABASE_URL | awk '{ print $4 }'
+}
+
+backup_url()
+{
+    heroku pgbackups:url $BACKUP_ID -r $REMOTE
+}
+
+download_backup()
+{
+    curl $(backup_url) > ${BACKUP_ID}.dump
+}
+
+## Main program
+
+[ -n "$DEBUG" ] && set -o xtrace
+set -o errexit
+set -o nounset
+set -o pipefail
+
+BACKUP_ID="$(capture_backup | extract_backup_id)"
+download_backup
