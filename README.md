@@ -23,3 +23,11 @@ What's the point?
    local PostgreSQL database and scan the tables for you.
 
    https://twitter.com/brynary/status/269508136589750272
+
+Backing up PostgreSQL on Heroku databases
+-----------------------------------------
+
+You can find out everything you need to know about how to setup backups
+on Heroku in their [PG Backups][] docs.
+
+[PG Backups]: https://devcenter.heroku.com/articles/pgbackups
