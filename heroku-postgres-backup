@@ -26,7 +26,7 @@ backup_url()
 
 download_backup()
 {
-    curl --silent $(backup_url) > ${BACKUP_ID}.dump
+    curl --silent $(backup_url) > $OUTPUT_FILE
 }
 
 ## Main program
@@ -37,4 +37,5 @@ set -o nounset
 set -o pipefail
 
 BACKUP_ID="$(capture_backup | extract_backup_id)"
+OUTPUT_FILE="${1:-$BACKUP_ID.dump}"
 download_backup
