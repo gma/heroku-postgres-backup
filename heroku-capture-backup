@@ -26,7 +26,7 @@ backup_url()
 
 download_backup()
 {
-    curl $(backup_url) > ${BACKUP_ID}.dump
+    curl --silent $(backup_url) > ${BACKUP_ID}.dump
 }
 
 ## Main program
