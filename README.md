@@ -17,15 +17,12 @@ What's the point?
    restore your business's or customers' database on different hardware?
 
 2. **Verification.** If you're not verifying that you can restore from
-   your backups, you're not really backing your data up. This script
-   doesn't just keep a local stash of your recent Heroku database
-   backups, it will optionally uncompresses them, load them into a
-   local PostgreSQL database and scan the tables for you.
+   your backups, you're not really backing your data up. These scripts
+   won't just keep a local stash of your recent Heroku database
+   backups, they'll also verify that they're not corrupt. (TODO)
 
-   https://twitter.com/brynary/status/269508136589750272
-
-Backing up PostgreSQL on Heroku databases
------------------------------------------
+Setting up PostgreSQL backups on Heroku
+---------------------------------------
 
 You can find out everything you need to know about how to setup backups
 on Heroku in their [PG Backups][] docs.
